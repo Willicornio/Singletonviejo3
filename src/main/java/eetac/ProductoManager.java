@@ -19,5 +19,6 @@ public interface ProductoManager {
     public int damepedidos();
     public int dameListaPedidoenUsuario (String idUser);
     public int dameListaCajasenPedido(String idPedido);
+    public int dameNumeroPedidoRealizado();
 
 }

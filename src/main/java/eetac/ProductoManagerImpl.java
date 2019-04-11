@@ -17,6 +17,7 @@ public class ProductoManagerImpl implements ProductoManager {
     private LinkedList<Producto> productos;
     private LinkedList<Caja> cajas;
     private LinkedList<Pedido> pedidos;
+    private LinkedList<Pedido> pedidosrealidos;
 
 
     public ProductoManagerImpl() {
@@ -25,6 +26,7 @@ public class ProductoManagerImpl implements ProductoManager {
         cajas = new LinkedList<Caja>();
         productos = new LinkedList<Producto>();
         usuarios = new HashMap<String, Usuario>();
+        pedidosrealidos = new LinkedList<Pedido>();
     }
 
     public static ProductoManager getInstance() {
@@ -111,10 +113,16 @@ public class ProductoManagerImpl implements ProductoManager {
     public void servirPedido(String idPedido) throws PedidoNotFound {
         log.info("Servir primer pedido");
         Pedido p;
-        p = pedidos.poll();
+        p = pedidos.getFirst();
+        pedidos.poll();
         p.setRealizado(true);
+        pedidosrealidos.add(p);
 
     }
+    public int dameNumeroPedidoRealizado(){
+        return this.pedidosrealidos.size();
+    }
+
 
 
     public LinkedList<Producto> listaProductosVenta() {

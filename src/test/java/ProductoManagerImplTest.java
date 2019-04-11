@@ -70,6 +70,25 @@ public void testDameListaOrdenadoProductoPrecio() {
 
     }
 
+    @Test
+    public void testServirPedido() throws UsuarioNotFound, PedidoNotFound{
+
+        this.pm.addUser("User1");
+        Producto producto1 = new Producto(15, "toamte", 28);
+        Producto producto3 = new Producto(15, "toamte", 28);
+        Producto producto2 = new Producto(15, "toamte", 28);
+        this.pm.addCaja(producto1, 10, "pedido1");
+        this.pm.addCaja(producto3, 10, "pedido1");
+        this.pm.addCaja(producto2, 10, "pedido2");
+
+        this.pm.hacerPedido("User1","pedido1");
+        this.pm .servirPedido("pedido1");
+        Assert.assertEquals(0, this.pm.damepedidos());
+        Assert.assertEquals(1, this.pm.dameNumeroPedidoRealizado());
+
+
+    }
+
 
     @Test
     public void testHacerPedido() throws UsuarioNotFound{
